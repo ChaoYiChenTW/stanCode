@@ -2,35 +2,32 @@
 
 """
 Stanford CS106AP SimpleImage
-Nick Parlante, Sonja Johnson-Yu, and Nick Bowman
- -6/2019 version has file reading, pix, and foreach iterator
+
+Written by Nick Parlante, Sonja Johnson-Yu, and Nick Bowman.
+ -7/2019  version, has file reading, pix, foreach, hidden get/setpix
 
 SimpleImage Features:
 Create image:
-    image = SimpleImage.blank(400, 200)   # create new image of size
-    image = SimpleImage('foo.jpg')        # create from file
+  image = SimpleImage.blank(400, 200)   # create new image of size
+  image = SimpleImage('foo.jpg')        # create from file
 
 Access size
-    image.width, image.height
-
-Iterate over all pixels:
-    for pixel in image:
-        #do something with pixel
+  image.width, image.height
 
 Get pix at x,y
-    pix = image.get_pix(x, y)
-    # pix is RGB tuple like (100, 200, 0)
+  pix = image.get_pix(x, y)
+  # pix is RGB tuple like (100, 200, 0)
 
 Set pix at x,y
-    image.set_pix(x, y, pix)   # set data by tuple also
+  image.set_pix(x, y, pix)   # set data by tuple also
 
 Get Pixel object at x,y
-    pixel = image.get_pixel(x, y)
-    pixel.red = 0
-    pixel.blue = 255
+  pixel = image.get_pixel(x, y)
+  pixel.red = 0
+  pixel.blue = 255
 
 Show image on screen
-    image.show()
+  image.show()
 
 The main() function below demonstrates the above functions as a test.
 """
@@ -210,11 +207,11 @@ class SimpleImage(object):
         """
         self.px[x, y] = (red, green, blue)
 
-    def get_pix(self, x, y):
+    def _get_pix_(self, x, y):
         """Get pix RGB tuple (200, 100, 50) for the given x,y."""
         return self.px[x, y]
 
-    def set_pix(self, x, y, pix):
+    def _set_pix_(self, x, y, pix):
         """Set the given pix RGB tuple into the image at the given x,y."""
         self.px[x, y] = pix
 
@@ -255,11 +252,11 @@ def main():
     #     print(pixel)
 
     # Set green stripe using pix access.
-    pix = image.get_pix(0, 0)
+    pix = image._get_pix_(0, 0)
     green = (0, pix[1], 0)
     for x in range(image.width - 10, image.width):
         for y in range(image.height):
-            image.set_pix(x, y, green)
+            image._set_pix_(x, y, green)
     image.show()
 
 
